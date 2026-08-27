@@ -133,7 +133,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 0.95rem;
   border: 2px solid transparent;
   transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
-  white-space: nowrap;
+  text-align: center;
 }
 .btn-primary {
   background: var(--orange);
@@ -201,12 +201,31 @@ button { font-family: inherit; cursor: pointer; }
   top: 0; left: 0; right: 0;
   z-index: 100;
   padding: 1.1rem 0;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+  transition: padding 0.3s ease;
 }
-.site-header.is-scrolled {
+/*
+  The frosted-glass backdrop lives on a ::before layer rather than on
+  .site-header itself: backdrop-filter/filter on an element establishes a
+  new containing block for its position:fixed descendants, which would
+  hijack the full-screen mobile nav overlay (also position:fixed, and a
+  descendant of .site-header) into being sized relative to the header's
+  own small box instead of the viewport.
+*/
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+  box-shadow: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.site-header.is-scrolled::before {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.site-header.is-scrolled {
   padding: 0.7rem 0;
 }
 .header-inner {
