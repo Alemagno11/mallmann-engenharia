@@ -1,0 +1,7 @@
+.DS_Store
+Thumbs.db
+*.log
+
+# Vídeo institucional original (119MB) — use "video-site-otimizado.mp4" no site.
+# Mantido fora do git por tamanho; guarde-o em outro lugar (Drive, backup local).
+video para site.mp4
